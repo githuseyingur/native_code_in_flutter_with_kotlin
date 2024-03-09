@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
         overlays: [SystemUiOverlay.bottom]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: ThemeData(
         useMaterial3: false,
       ),
@@ -64,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
       print('URL : $tempUri');
     } on PlatformException catch (e) {
-      print('select image in ablum : $e');
+      print('select image in ablum error: $e');
     }
   }
 
@@ -78,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
       print('URL : $cameraTempUri');
     } on PlatformException catch (e) {
-      print('select image in ablum : $e');
+      print('takephoto error : $e');
     }
   }
 
@@ -205,8 +204,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                         child: const Text('GALLERY')),
                                     ElevatedButton(
                                         onPressed: () async {
-                                          await takePhoto();
                                           Navigator.of(context).pop();
+                                          await takePhoto();
                                         },
                                         child: const Text('CAMERA')),
                                   ],

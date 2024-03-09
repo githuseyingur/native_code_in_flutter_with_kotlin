@@ -11,10 +11,10 @@ import java.io.InputStream
 import android.content.Intent
 import android.util.Base64
 import android.provider.MediaStore
-import android.widget.Toast
 
 
 class MainActivity: FlutterActivity() {
+  val CAMERA_REQUEST_CODE = 200
   lateinit var mResult:MethodChannel.Result
   override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
     super.configureFlutterEngine(flutterEngine)
@@ -37,13 +37,9 @@ class MainActivity: FlutterActivity() {
             }
         }
         else if(call.method == "takePhoto"){
-
           mResult = result
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            if (intent.resolveActivity(packageManager) != null) {
-                startActivityForResult(intent, 0)
-            }
-   /*       if (ContextCompat.checkSelfPermission(
+       
+          if (ContextCompat.checkSelfPermission(
             applicationContext,
             android.Manifest.permission.CAMERA
         ) == PackageManager.PERMISSION_GRANTED
@@ -54,16 +50,16 @@ class MainActivity: FlutterActivity() {
     } else {
         // Kamera uygulaması bulunamadı, hata mesajını göster
         // veya uygun bir işlem yap
-        Toast.makeText(this, "Kamera uygulaması bulunamadı", Toast.LENGTH_SHORT).show()
+       // Toast.makeText(this, "Kamera uygulaması bulunamadı", Toast.LENGTH_SHORT).show()
     }
     } else {
          //Kamera izni henüz alınmamış, izin isteği başlat
       ActivityCompat.requestPermissions(
            this, 
            arrayOf(android.Manifest.permission.CAMERA),
-           0
+           CAMERA_REQUEST_CODE
       )
-    }*/
+    }
           
         }
         else {
@@ -72,23 +68,19 @@ class MainActivity: FlutterActivity() {
     }
 
   }
-  /*private fun openCamera() {
+  private fun openCamera() {
     val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-    if (intent.resolveActivity(packageManager) != null) {
+ 
         startActivityForResult(intent, 0)
-    } else {
-        // Kamera uygulaması bulunamadı, hata mesajını göster
-        // veya uygun bir işlem yap
-        Toast.makeText(this, "Kamera uygulaması bulunamadı", Toast.LENGTH_SHORT).show()
-    }
-  }*/
-  /*override fun onRequestPermissionsResult(
+   
+  }
+  override fun onRequestPermissionsResult(
     requestCode: Int,
     permissions: Array<out String>,
     grantResults: IntArray
   ) {
     when (requestCode) {
-        0 -> {
+      CAMERA_REQUEST_CODE -> {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Kullanıcı kamera iznini verdi, kamera açma işlemine devam et
                 openCamera()
@@ -99,7 +91,7 @@ class MainActivity: FlutterActivity() {
         }
         // Diğer izin istek kodlarını işleyebilirsiniz (gerektiğinde)
     }
-}*/
+}
  
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
          super.onActivityResult(requestCode, resultCode, data)
@@ -121,8 +113,9 @@ class MainActivity: FlutterActivity() {
                 }
             }
         }
-        if (requestCode == 0 && resultCode == RESULT_OK) {
+        if (requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK) {
          
+
         }
     }
   
