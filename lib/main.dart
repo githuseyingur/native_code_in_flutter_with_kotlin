@@ -32,7 +32,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static const platform = MethodChannel('random_channel');
+  static const platform = MethodChannel('my_channel');
   List<CapitalModel> capitalList = [];
   String base64String = '';
 
@@ -55,13 +55,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> selectImageInAlbum() async {
     try {
-      var tempUri = await platform.invokeMethod('selectImageInAlbum');
+      var base64Result = await platform.invokeMethod('selectImageInAlbum');
 
       setState(() {
-        base64String = tempUri.toString();
+        base64String = base64Result.toString();
       });
 
-      print('URL : $tempUri');
+      print('URL : $base64String');
     } on PlatformException catch (e) {
       print('select image in ablum error: $e');
     }
@@ -69,13 +69,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> takePhoto() async {
     try {
-      var cameraTempUri = await platform.invokeMethod('takePhoto');
-
+      var base64Result = await platform.invokeMethod('takePhoto');
       setState(() {
-        base64String = cameraTempUri.toString();
+        base64String = base64Result.toString();
       });
-
-      print('URL : $cameraTempUri');
+      print('URL : $base64Result');
     } on PlatformException catch (e) {
       print('takephoto error : $e');
     }
@@ -246,16 +244,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             fontWeight: FontWeight.w400),
                       )),
               ),
-
-              // Image.file(
-              //   _getFileFromContentUri(uri),
-              //   fit: BoxFit.cover,
-              // ),
-              // Image(
-              //   image: _getImageProvider(uri),
-              //   fit: BoxFit
-              //       .cover, // İsteğe bağlı olarak, görüntüyü uygun şekilde boyutlandırabilirsiniz.
-              // )
             ],
           ),
         ),
