@@ -1,3 +1,4 @@
 *.cpp linguist-detectable=false
+*.h linguist-detectable=false
 *.txt linguist-detectable=false
 *.html linguist-detectable=false
