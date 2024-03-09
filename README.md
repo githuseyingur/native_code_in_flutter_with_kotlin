@@ -1,5 +1,7 @@
-<img src="https://github.com/githuseyingur/native_code_in_flutter_with_kotlin/assets/120099096/1666a473-95ca-4d80-b2d9-0200ae44eff3"  width="250" height ="520">
-<img src="https://github.com/githuseyingur/flutter_text_recog_from_tc_identity_card/assets/120099096/57b6d1bb-9d46-43d6-b664-6ffdf56115aa"  width="280" height ="580">
-<img src="https://github.com/githuseyingur/flutter_text_recog_from_tc_identity_card/assets/120099096/17953d0c-395b-465c-81b4-acd72ea654d9"  width="280" height ="580">
-<img src="https://github.com/githuseyingur/flutter_text_recog_from_tc_identity_card/assets/120099096/d9565a6f-179a-4f56-95aa-ab49fac8c43f"  width="280" height ="580">
-
+<img src="https://github.com/githuseyingur/native_code_in_flutter_with_kotlin/assets/120099096/ef088960-a206-4a1e-aa78-e4f381d07fb0"  width="250" height ="530">
+<img src="https://github.com/githuseyingur/native_code_in_flutter_with_kotlin/assets/120099096/a1088458-eb97-4b39-8491-8333f3394e30"  width="250" height ="530">
+<img src="https://github.com/githuseyingur/native_code_in_flutter_with_kotlin/assets/120099096/c7098f32-9f51-4e3c-a080-5c7eeff89315"  width="250" height ="530">
+<img src="https://github.com/githuseyingur/native_code_in_flutter_with_kotlin/assets/120099096/dcd053a9-9e2d-425f-bed4-e68ffe100090"  width="250" height ="530">
+<img src="https://github.com/githuseyingur/native_code_in_flutter_with_kotlin/assets/120099096/16309095-2d0a-4c73-ab81-9703aeb3c7c8"  width="250" height ="530">
+<img src="https://github.com/githuseyingur/native_code_in_flutter_with_kotlin/assets/120099096/8e1d9336-dbae-476f-aa34-1c2e68734e5c"  width="250" height ="530">
+<img src="https://github.com/githuseyingur/native_code_in_flutter_with_kotlin/assets/120099096/1c99633d-4b4f-4dc3-b55d-6ae8a27f8ae0"  width="250" height ="530">
