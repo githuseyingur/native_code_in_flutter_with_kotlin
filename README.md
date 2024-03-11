@@ -17,23 +17,23 @@ This repository is a demo about using Kotlin in Flutter to perform different ope
 ```dart
 static const platform = MethodChannel('my_channel');
 ```
-##### Invoke Methods
+#### Invoke Methods
 
 ```dart
 String jsonString = await platform.invokeMethod('getJsonStringOfCapitals');
 var base64Result = await platform.invokeMethod('selectImageInAlbum');
 var base64Result = await platform.invokeMethod('takePhoto');
 ```
-##### Native (MainActivity.kt)
+#### Native (MainActivity.kt)
 
-###### Describing Request Codes For Opening Gallery & Camera
+##### Describing Request Codes For Opening Gallery & Camera
 ```kts
 class MainActivity: FlutterActivity() {
   val CAMERA_REQUEST_CODE = 200
   val GALLERY_REQUEST_CODE = 300
   ...
 ```
-###### Features
+##### Features
 
 1) Reading a json file with countries and their capitals
 
