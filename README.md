@@ -49,7 +49,7 @@ if(call.method == "getJsonStringOfCapitals") {
   }  
 }
 ```
-<p>We use `result.success` to access the result on the Flutter side.</p>
+We use `result.success` to access the result on the Flutter side.
 
 2) Accessing the phone's gallery
 
