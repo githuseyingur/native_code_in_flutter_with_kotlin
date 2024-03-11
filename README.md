@@ -17,7 +17,7 @@ This repository is a demo about using Kotlin in Flutter to perform different ope
 ```dart
 static const platform = MethodChannel('my_channel');
 ```
-## Invoke Methods
+## Invoke Methods (main.dart)
 
 ```dart
 String jsonString = await platform.invokeMethod('getJsonStringOfCapitals');
