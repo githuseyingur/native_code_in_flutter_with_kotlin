@@ -31,7 +31,6 @@ var base64Result = await platform.invokeMethod('takePhoto');
 class MainActivity: FlutterActivity() {
   val CAMERA_REQUEST_CODE = 200
   val GALLERY_REQUEST_CODE = 300
-  //...
 ```
 ### Features
 
@@ -83,8 +82,6 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
         mResult.success(base64Image)
       }
     }
-    ...
-  ...
 ```
 
 #### 3) Accessing the phone's camera with permissions
@@ -139,12 +136,10 @@ private fun openCamera() {
 * onActivityResult
 ```kts
 // inside of  if (resultCode == RESULT_OK) {
-//...
 if (requestCode == CAMERA_REQUEST_CODE ) {
   val photo: Bitmap = data?.extras?.get("data") as Bitmap
   val base64Image: String = convertBitmapToBase64(photo)
   mResult.success(base64Image)
 }
-//...
 ```
 
