@@ -31,7 +31,7 @@ var base64Result = await platform.invokeMethod('takePhoto');
 class MainActivity: FlutterActivity() {
   val CAMERA_REQUEST_CODE = 200
   val GALLERY_REQUEST_CODE = 300
-  ...
+  //...
 ```
 ### Features
 
