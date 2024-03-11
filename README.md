@@ -136,3 +136,15 @@ private fun openCamera() {
 }
 ```
 
+* onActivityResult
+```kts
+// inside of  if (resultCode == RESULT_OK) {
+...
+if (requestCode == CAMERA_REQUEST_CODE ) {
+  val photo: Bitmap = data?.extras?.get("data") as Bitmap
+  val base64Image: String = convertBitmapToBase64(photo)
+  mResult.success(base64Image)
+}
+...
+```
+
