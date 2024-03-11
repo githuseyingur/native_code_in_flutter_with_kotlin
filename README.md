@@ -24,15 +24,115 @@ String jsonString = await platform.invokeMethod('getJsonStringOfCapitals');
 var base64Result = await platform.invokeMethod('selectImageInAlbum');
 var base64Result = await platform.invokeMethod('takePhoto');
 ```
-##### Native
+##### Native (MainActivity.kt)
+
+###### Describing Request Codes For Opening Gallery & Camera
+```kts
+class MainActivity: FlutterActivity() {
+  val CAMERA_REQUEST_CODE = 200
+  val GALLERY_REQUEST_CODE = 300
+  ...
+```
+###### Features
+
+1) Reading a json file with countries and their capitals
+
+* reading the json file
 ```kts
 if(call.method == "getJsonStringOfCapitals") {
-          lateinit var jsonString: String
-          try {
-            jsonString = context.assets.open("country-by-capital-city.json").bufferedReader().use { it.readText()}
-            result.success(jsonString)
-          } catch (ex: Exception) {
-            ex.printStackTrace()
-          }  
-        }
+  lateinit var jsonString: String
+  try {
+    jsonString = context.assets.open("country-by-capital-city.json").bufferedReader().use { it.readText()}
+    result.success(jsonString)
+  } catch (ex: Exception) {
+    ex.printStackTrace()
+  }  
+}
 ```
+We use `result.success` to access the result on the Flutter side.
+
+2) Accessing the phone's gallery
+
+* open gallery
+```kts
+if(call.method == "selectImageInAlbum"){
+  mResult = result
+  val intent = Intent(Intent.ACTION_GET_CONTENT)
+  intent.type = "image/*"
+
+  if (intent.resolveActivity(packageManager) != null) {
+  startActivityForResult(intent, GALLERY_REQUEST_CODE)
+  }
+}
+```
+
+* onActivityResult
+```kts
+override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+  super.onActivityResult(requestCode, resultCode, data)
+  if (resultCode == RESULT_OK) {
+
+    if (requestCode == GALLERY_REQUEST_CODE) {
+      var selectedImageUri = data?.getData()
+      if (selectedImageUri != null) {
+        val inputStream: InputStream = contentResolver.openInputStream(selectedImageUri)!!
+        val bytes = ByteArray(inputStream.available())
+        inputStream.read(bytes)
+        inputStream.close()
+        val base64Image = Base64.encodeToString(bytes, Base64.DEFAULT)
+        mResult.success(base64Image)
+      }
+    }
+    ...
+  ...
+```
+
+3) Accessing the phone's camera with permissions
+
+* permission control
+```kts
+if(call.method == "takePhoto"){
+  mResult = result
+  if (ContextCompat.checkSelfPermission(applicationContext,android.Manifest.permission.CAMERA ) == PackageManager.PERMISSION_GRANTED) {
+    openCamera()
+  } else {
+    ActivityCompat.requestPermissions(
+      this, 
+      arrayOf(android.Manifest.permission.CAMERA),
+      CAMERA_REQUEST_CODE
+    )
+  }
+}
+```
+
+* the method that opens the camera
+```kts
+private fun openCamera() {
+  val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+  startActivityForResult(intent, CAMERA_REQUEST_CODE)
+}
+```
+
+* permission result
+
+```kts
+ override fun onRequestPermissionsResult(
+    requestCode: Int,
+    permissions: Array<out String>,
+    grantResults: IntArray
+  ) {
+    when (requestCode) {
+      CAMERA_REQUEST_CODE -> {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Kullanıcı kamera iznini verdi, kamera açma işlemine devam et
+                openCamera()
+            } else {
+                // Kullanıcı kamera iznini reddetti, hata mesajı göster veya başka bir işlem yap
+                mResult.error("PERMISSION_DENIED", "Kamera izni reddedildi.", null)
+            }
+        }
+        // Diğer izin istek kodlarını işleyebilirsiniz (gerektiğinde)
+    }
+}
+```
+
