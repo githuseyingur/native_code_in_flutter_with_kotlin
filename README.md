@@ -35,7 +35,7 @@ class MainActivity: FlutterActivity() {
 ```
 ### Features
 
-#### Reading a json file with countries and their capitals
+#### 1) Reading a json file with countries and their capitals
 
 * reading the json file
 ```kts
@@ -51,7 +51,7 @@ if(call.method == "getJsonStringOfCapitals") {
 ```
 We use `result.success` to access the result on the Flutter side.
 
-#### Accessing the phone's gallery
+#### 2) Accessing the phone's gallery
 
 * open gallery
 ```kts
@@ -87,7 +87,7 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
   ...
 ```
 
-#### Accessing the phone's camera with permissions
+#### 3) Accessing the phone's camera with permissions
 
 * permission control
 ```kts
